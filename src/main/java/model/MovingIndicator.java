@@ -15,7 +15,7 @@ public abstract class MovingIndicator {
 	
 	public abstract double getValue();
 	
-	protected void addDataPoint(double data){
+	public void addDataPoint(double data){
 		this.dataPoints.addLast(data);		
 		removeHeadIfFull();
 	}

@@ -8,10 +8,14 @@ public class RSI extends MovingIndicator{
 
 	@Override
 	public double getValue() {
-		return 100 - (100 / 1 + calculateRS());
+		try{
+			return 100 - (100 / 1 + calculateRS());
+		}catch(ArithmeticException e){
+			return 0.0;
+		}
 	}
 	
-	private double calculateRS() {
+	private double calculateRS() throws ArithmeticException{
 		double gain = 0;
 		double loss = 0;
 		
@@ -19,7 +23,7 @@ public class RSI extends MovingIndicator{
 			if(d > 0){
 				gain += d;
 			}else{
-				loss += d;
+				loss += (d*-1);
 			}
 		}
 		
